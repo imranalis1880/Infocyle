@@ -222,9 +222,9 @@ export default function InfocyleLandingPage() {
               <span className="text-[#0f172a] text-2xl tracking-tight font-poppins mt-1">infocyle</span>
             </Link>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm font-medium text-slate-500">
-              <Link href="/privacy" className="hover:text-teal-600 transition-colors">Privacy Policy</Link>
+              <Link className="hover:text-teal-600 transition-colors" href="/privacy">Privacy Policy</Link>
               <span className="hidden sm:block text-slate-300">•</span>
-              <Link href="/terms" className="hover:text-teal-600 transition-colors">Terms and Conditions</Link>
+              <Link className="hover:text-teal-600 transition-colors" href="/terms">Terms and Conditions</Link>
             </div>
           </div>
           <p className="text-slate-500 text-xs mt-4 font-medium">© {new Date().getFullYear()} Infocyle Technologies. All rights reserved.</p>
