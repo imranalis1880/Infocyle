@@ -13,8 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Infocyle",
-  description: "Architecting tomorrow",
+  title: "Infocyle | Technology Holding Company",
+  description: "Engineering the future of systems. Infocyle builds and scales intelligent platforms at the intersection of computational logic, education, and full-stack architecture.",
+  keywords: ["Infocyle", "Vectra Labs", "EdTech", "Systems Architecture", "Technology Holding Company"],
+  openGraph: {
+    title: "Infocyle",
+    description: "Engineering the future of systems.",
+    url: "https://yourdomain.com",
+    siteName: "Infocyle",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
