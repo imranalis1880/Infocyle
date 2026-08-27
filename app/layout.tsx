@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Infocyle",
     description: "Engineering the future of systems.",
-    url: "https://yourdomain.com",
+    url: "https://infocyle.com",
     siteName: "Infocyle",
     type: "website",
   },
