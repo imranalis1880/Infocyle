@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
 
         <div className="space-y-6 text-sm md:text-base leading-relaxed font-medium">
           <p>
-            Infocyle and its educational division, Vectra Labs ("we," "our," or "us"), are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, store, and protect your personal data in compliance with the Digital Personal Data Protection (DPDP) Act, 2023 of India.
+            Infocyle and its educational division, Vectra Labs (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;), are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, store, and protect your personal data in compliance with the Digital Personal Data Protection (DPDP) Act, 2023 of India.
           </p>
 
           <h2 className="text-xl font-bold text-[#0f172a] mt-8">1. Information We Collect</h2>

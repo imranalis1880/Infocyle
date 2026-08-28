@@ -12,6 +12,7 @@ import {
   MessageCircle,
   FileText
 } from 'lucide-react';
+import PhotoCarousel from './components/PhotoCarousel';
 
 export default function InfocyleLandingPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -109,6 +110,9 @@ export default function InfocyleLandingPage() {
               Pre-Register Now
             </a>
           </div>
+
+          {/* Photo Carousel */}
+          <PhotoCarousel />
         </div>
 
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400">
