@@ -108,7 +108,7 @@ export default function PhotoCarousel({
 
   return (
     <div
-      className="w-full max-w-5xl mx-auto mt-14 relative group select-none text-left"
+      className="w-full max-w-5xl mx-auto mt-8 sm:mt-14 relative group select-none text-left"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -183,7 +183,7 @@ export default function PhotoCarousel({
                           key={hIdx}
                           className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2.5 p-3 rounded-xl bg-slate-50 hover:bg-teal-50/40 border border-slate-200/80 transition-colors"
                         >
-                          <span className="text-xs font-bold text-teal-700 uppercase tracking-wider whitespace-nowrap min-w-[95px]">
+                          <span className="text-xs font-bold text-teal-700 uppercase tracking-wider whitespace-normal sm:whitespace-nowrap min-w-[95px]">
                             {h.label}:
                           </span>
                           <span className="text-xs sm:text-sm font-semibold text-slate-700 leading-snug">

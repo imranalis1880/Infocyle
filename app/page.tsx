@@ -81,22 +81,22 @@ export default function InfocyleLandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[85vh]">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center space-x-2 bg-teal-50 rounded-full py-1.5 px-4 mb-8 border border-teal-100 shadow-sm">
-            <span className="relative flex h-2 w-2">
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 lg:pt-56 lg:pb-32 overflow-hidden flex flex-col items-center justify-center min-h-[85vh]">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full">
+          <div className="inline-flex items-center space-x-2 bg-teal-50 rounded-full py-1.5 px-3.5 sm:px-4 mb-6 sm:mb-8 border border-teal-100 shadow-sm max-w-full">
+            <span className="relative flex h-2 w-2 flex-shrink-0">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
             </span>
-            <span className="text-xs font-bold uppercase tracking-widest text-teal-700">Technology Holding Company</span>
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-teal-700 truncate">Technology Holding Company</span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0f172a] tracking-tight leading-tight mb-8">
-            Engineering the <br />
-            <span className="bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent">Future of Systems.</span>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-[#0f172a] tracking-tight leading-[1.15] mb-6 sm:mb-8 break-words">
+            Engineering the <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent inline-block">Future of Systems.</span>
           </h1>
           
-          <p className="max-w-2xl text-lg md:text-xl text-slate-500 mx-auto mb-12 leading-relaxed font-medium">
+          <p className="max-w-2xl text-base sm:text-lg md:text-xl text-slate-500 mx-auto mb-8 sm:mb-12 leading-relaxed font-medium px-2 sm:px-0">
             Infocyle builds and scales intelligent platforms at the intersection of computational logic, education, and full-stack architecture.
           </p>
           
