@@ -1,6 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms and Conditions',
+  description: 'Terms and conditions governing the use of Infocyle and Vectra Labs educational platforms and services.',
+  alternates: {
+    canonical: '/terms',
+  },
+};
 
 export default function TermsAndConditions() {
   return (

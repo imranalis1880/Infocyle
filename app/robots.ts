@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://infocyle.com/sitemap.xml', // Change this to your exact purchased domain
+    sitemap: 'https://infocyle.com/sitemap.xml',
+    host: 'https://infocyle.com',
   };
 }
