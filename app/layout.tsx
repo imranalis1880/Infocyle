@@ -77,7 +77,10 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/logo.png", type: "image/png" },
+    ],
+    shortcut: "/logo.png",
     apple: "/logo.png",
   },
   verification: {
@@ -97,6 +100,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} h-full antialiased`}
     >
       <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo.png" />
         {/* Structured Data (JSON-LD) for Google Knowledge Graph & Organization indexing */}
         <script
           type="application/ld+json"

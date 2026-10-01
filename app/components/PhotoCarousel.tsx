@@ -142,7 +142,7 @@ export default function PhotoCarousel({
       >
         {/* Compact Carousel Container Card */}
         <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-slate-200 bg-white shadow-xl shadow-slate-200/50">
-          
+
           {/* Slides Track */}
           <div
             className="flex transition-transform duration-700 ease-out"
@@ -265,11 +265,10 @@ export default function PhotoCarousel({
                 type="button"
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentIndex === index
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === index
                     ? 'w-6 bg-teal-500 shadow-sm shadow-teal-500/50'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -363,7 +362,7 @@ export default function PhotoCarousel({
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-2 px-6 rounded-full bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-slate-200 hover:text-white border border-slate-700 text-xs font-bold transition-all shadow-md cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
-                <span>✕ Close Preview</span>
+                <span> Close Preview</span>
               </button>
             </div>
           </div>
