@@ -10,14 +10,37 @@ import {
   GraduationCap, 
   Mail, 
   MessageCircle, 
-  FileText 
+  FileText,
+  Sparkles
 } from 'lucide-react';
-import PhotoCarousel from './components/PhotoCarousel';
-
 export default function InfocyleLandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [gridOffset, setGridOffset] = useState(0);
+  const [eventPhotoIndex, setEventPhotoIndex] = useState(0);
+
+  const logoLaunchPhotos = [
+    {
+      src: '/images/infocyle-logo-launch.jpg',
+      alt: 'Infocyle Logo Launch Ceremony',
+      badge: 'Unveiling Ceremony',
+      caption: 'Ceremonial unveiling with Chief Guest Shri. Manoj Moothedan (Hon\'ble MLA) and Chairman Haji KM Pareeeth',
+    },
+    {
+      src: '/images/infocyle-launch.jpg',
+      alt: 'Infocyle Founding Leadership Conclave',
+      badge: 'Executive Conclave',
+      caption: 'Founding leadership team: Imran Ali S (CEO), Sreerag PP (CTO), and Farhan A (COO)',
+    },
+  ];
+
+  // Gradually switch between the two logo launch photos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setEventPhotoIndex((prev) => (prev === 0 ? 1 : 0));
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   // Smooth scroll handler for header navigation buttons
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
@@ -30,6 +53,7 @@ export default function InfocyleLandingPage() {
         top: elementPosition - navOffset,
         behavior: 'smooth'
       });
+      window.history.pushState(null, '', `#${id}`);
     }
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
@@ -56,8 +80,13 @@ export default function InfocyleLandingPage() {
     };
   }, []);
 
-  // IntersectionObserver to trigger smooth gliding entrance for grids and boxes
+  // Guarantee all sections are immediately visible and enhanced with IntersectionObserver
   useEffect(() => {
+    const elements = document.querySelectorAll('.glide-box');
+    elements.forEach((el) => el.classList.add('is-visible'));
+
+    if (typeof IntersectionObserver === 'undefined') return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -67,13 +96,28 @@ export default function InfocyleLandingPage() {
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.01,
+        rootMargin: '100px 0px 100px 0px',
       }
     );
 
-    const elements = document.querySelectorAll('.glide-box');
     elements.forEach((el) => observer.observe(el));
+
+    // Handle hash scrolling on page load (e.g. /#portfolio or /#contact)
+    if (window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        setTimeout(() => {
+          const navOffset = 90;
+          const pos = targetEl.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: pos - navOffset,
+            behavior: 'smooth'
+          });
+        }, 150);
+      }
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -106,13 +150,20 @@ export default function InfocyleLandingPage() {
               <span className="text-[#070d18] text-2xl font-poppins tracking-tight mt-1">infocyle</span>
             </Link>
 
-            <div className="hidden md:flex space-x-8 items-center relative z-10">
+            <div className="hidden md:flex space-x-6 lg:space-x-8 items-center relative z-10">
               <a 
                 href="#thesis" 
                 onClick={(e) => scrollToSection(e, 'thesis')}
                 className="text-sm font-bold text-[#070d18] hover:text-[#070d18] uppercase tracking-wider px-3 py-1.5 border-2 border-transparent hover:border-[#070d18] hover:bg-[#00f0ff] transition-all cursor-pointer"
               >
                 Thesis
+              </a>
+              <a 
+                href="#events" 
+                onClick={(e) => scrollToSection(e, 'events')}
+                className="text-sm font-bold text-[#070d18] hover:text-[#070d18] uppercase tracking-wider px-3 py-1.5 border-2 border-transparent hover:border-[#070d18] hover:bg-[#00f0ff] transition-all cursor-pointer"
+              >
+                Events
               </a>
               <a 
                 href="#portfolio" 
@@ -150,6 +201,13 @@ export default function InfocyleLandingPage() {
               className="text-[#070d18] block px-4 py-2.5 border-2 border-[#070d18] bg-white font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_#070d18]"
             >
               Thesis
+            </a>
+            <a 
+              href="#events" 
+              onClick={(e) => scrollToSection(e, 'events')}
+              className="text-[#070d18] block px-4 py-2.5 border-2 border-[#070d18] bg-white font-bold uppercase tracking-wider shadow-[3px_3px_0px_0px_#070d18]"
+            >
+              Events
             </a>
             <a 
               href="#portfolio" 
@@ -214,9 +272,6 @@ export default function InfocyleLandingPage() {
               Pre-Register Now
             </a>
           </div>
-
-          {/* Photo Carousel (Preserved 100% Intact) */}
-          <PhotoCarousel />
         </div>
 
         <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[#070d18]">
@@ -244,6 +299,167 @@ export default function InfocyleLandingPage() {
               We operate as the central nervous system for a focused portfolio of deep-tech and ed-tech initiatives. We engineer fundamental shifts in how systems operate, prioritizing zero marginal cost scalability.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Events Section - Logo Launch Milestone Panel */}
+      <section id="events" className="py-28 relative z-10 border-b-2 border-[#070d18] bg-[#f8f7f4]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          
+          <div className="mb-16 text-center glide-box">
+            <h2 className="text-xs font-mono font-black text-[#070d18] bg-[#00f0ff] border-2 border-[#070d18] px-3.5 py-1 tracking-widest uppercase mb-4 inline-block shadow-[3px_3px_0px_0px_#070d18]">
+              Conducted Milestones
+            </h2>
+            <h3 className="text-3xl md:text-5xl font-black text-[#070d18] uppercase tracking-tight">
+              Our Events
+            </h3>
+            <p className="max-w-2xl text-base sm:text-lg text-[#334155] font-medium mx-auto mt-4">
+              Official public unveiling and executive assembly conducted under Infocyle Technologies.
+            </p>
+          </div>
+
+          {/* Clean Logo Launch Event Panel with both photos in the same grid gradually switching */}
+          <div className="bg-white border-2 border-[#070d18] p-6 sm:p-10 md:p-12 shadow-[8px_8px_0px_0px_#070d18] glide-box">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+              
+              {/* Photo Switcher Container (6 cols) */}
+              <div className="lg:col-span-6 flex flex-col justify-between">
+                <div className="relative h-[340px] sm:h-[400px] md:h-[450px] bg-black border-2 border-[#070d18] shadow-[5px_5px_0px_0px_#070d18] overflow-hidden group">
+                  {logoLaunchPhotos.map((photo, idx) => (
+                    <div
+                      key={photo.src}
+                      className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                        eventPhotoIndex === idx
+                          ? 'opacity-100 z-10 pointer-events-auto'
+                          : 'opacity-0 z-0 pointer-events-none'
+                      }`}
+                    >
+                      <img
+                        src={photo.src}
+                        alt={photo.alt}
+                        className="w-full h-full object-cover object-center"
+                      />
+                    </div>
+                  ))}
+
+                  {/* Corner Milestone Tag */}
+                  <div className="absolute top-0 right-0 z-20 bg-[#00f0ff] text-[#070d18] border-b-2 border-l-2 border-[#070d18] text-[11px] font-mono font-black px-3.5 py-1 uppercase tracking-wider">
+                    [ MILESTONE 01 ]
+                  </div>
+
+                  {/* Active Badge */}
+                  <div className="absolute top-3 left-3 z-20 bg-[#070d18] text-[#00f0ff] border border-[#070d18] text-[11px] font-mono font-bold px-2.5 py-1 uppercase tracking-wider">
+                    {logoLaunchPhotos[eventPhotoIndex].badge}
+                  </div>
+
+                  {/* Bottom Caption Overlay */}
+                  <div className="absolute bottom-0 inset-x-0 z-20 bg-gradient-to-t from-[#070d18] via-[#070d18]/85 to-transparent p-4 sm:p-5 flex flex-col sm:flex-row sm:items-end justify-between gap-3 text-white border-t border-white/10">
+                    <div className="max-w-xs sm:max-w-sm">
+                      <p className="text-[11px] font-mono text-[#00f0ff] font-bold uppercase tracking-wider mb-1">
+                        Archived Photo 0{eventPhotoIndex + 1} / 02
+                      </p>
+                      <p className="text-xs sm:text-sm font-medium leading-snug text-slate-200">
+                        {logoLaunchPhotos[eventPhotoIndex].caption}
+                      </p>
+                    </div>
+
+                    {/* Interactive Switch Controls */}
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      {logoLaunchPhotos.map((_, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => setEventPhotoIndex(idx)}
+                          className={`px-2.5 py-1 text-[11px] font-mono font-black border transition-all cursor-pointer ${
+                            eventPhotoIndex === idx
+                              ? 'bg-[#00f0ff] text-[#070d18] border-[#070d18] shadow-[2px_2px_0px_0px_#ffffff]'
+                              : 'bg-[#070d18]/80 text-white border-white/40 hover:bg-white hover:text-[#070d18]'
+                          }`}
+                          aria-label={`Switch to photo ${idx + 1}`}
+                        >
+                          0{idx + 1}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Subtext info under the photo */}
+                <div className="mt-3 flex items-center justify-between text-xs font-mono font-bold text-[#475569]">
+                  <span>Gradually switching photos</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-[#00f0ff] animate-ping"></span>
+                    Verified Photographic Archive
+                  </span>
+                </div>
+              </div>
+
+              {/* Event Content & Highlights Column (6 cols) */}
+              <div className="lg:col-span-6 flex flex-col justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="bg-[#f0efe9] text-[#070d18] border border-[#070d18] text-[11px] font-mono font-bold px-2.5 py-0.5">
+                      Official Launch Ceremony
+                    </span>
+                    <span className="bg-[#f0efe9] text-[#070d18] border border-[#070d18] text-[11px] font-mono font-bold px-2.5 py-0.5">
+                      Perumbavoor, Kerala
+                    </span>
+                  </div>
+
+                  <h4 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#070d18] uppercase tracking-tight mb-3 leading-tight">
+                    Infocyle Logo Launch & Unveiling Ceremony
+                  </h4>
+
+                  <p className="text-[#334155] text-sm sm:text-base leading-relaxed font-medium mb-5">
+                    The formal public unveiling of Infocyle Technologies and its shared vision to engineer intelligent, scalable platforms and architect tomorrow.
+                  </p>
+
+                  <div className="bg-[#f8f7f4] border-2 border-[#070d18] p-4 sm:p-5 shadow-[4px_4px_0px_0px_#070d18] space-y-2 text-xs sm:text-sm mb-5">
+                    <p className="text-[#070d18] font-bold">
+                      <span className="text-slate-500 font-mono text-xs">CHIEF GUEST:</span> Shri. Manoj Moothedan (Hon&apos;ble MLA, Perumbavoor)
+                    </p>
+                    <p className="text-[#070d18] font-bold">
+                      <span className="text-slate-500 font-mono text-xs">PRESIDED BY:</span> Haji KM Pareeeth (Chairman, IGGIS)
+                    </p>
+                    <p className="text-[#070d18] font-bold">
+                      <span className="text-slate-500 font-mono text-xs">LEADERSHIP:</span> Imran Ali S (CEO) • Sreerag PP (CTO) • Farhan A (COO)
+                    </p>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-[#475569] font-medium leading-relaxed mb-6">
+                    A ceremonial milestone formalizing our multi-division portfolio structure encompassing Vectra Labs and next-generation systems architecture, attended by educators and community leaders.
+                  </p>
+                </div>
+
+                <div className="pt-6 border-t-2 border-[#070d18] flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <Link 
+                    href="/events#launch" 
+                    className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-[#070d18] text-white hover:bg-[#00f0ff] hover:text-[#070d18] border-2 border-[#070d18] font-black py-3.5 px-6 shadow-[4px_4px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all text-xs font-mono uppercase tracking-wider"
+                  >
+                    View Full Event Dossier <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link 
+                    href="/events" 
+                    className="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase tracking-wider text-[#070d18] hover:text-[#00f0ff] transition-colors"
+                  >
+                    Explore All Archives →
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Section Bottom Button */}
+          <div className="mt-12 text-center glide-box">
+            <Link 
+              href="/events" 
+              className="inline-flex items-center gap-3 bg-[#070d18] text-white hover:bg-[#00f0ff] hover:text-[#070d18] border-2 border-[#070d18] font-black py-4 px-8 sm:px-10 shadow-[6px_6px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all text-sm uppercase tracking-wider"
+            >
+              View Full Events & Milestones Dossier <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
         </div>
       </section>
 
