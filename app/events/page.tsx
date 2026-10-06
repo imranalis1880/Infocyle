@@ -12,6 +12,7 @@ import {
   ExternalLink 
 } from 'lucide-react';
 import type { Metadata } from 'next';
+import EventPhotoSwitcher, { EventPhoto } from './EventPhotoSwitcher';
 
 export const metadata: Metadata = {
   title: 'Events & Conducted Programs | Infocyle',
@@ -29,6 +30,7 @@ interface EventItem {
   date: string;
   location: string;
   image?: string | null;
+  images?: EventPhoto[];
   icon?: React.ComponentType<{ className?: string }>;
   certificateUrl?: string;
   summary: string;
@@ -38,6 +40,41 @@ interface EventItem {
 
 export default function EventsPage() {
   const events: EventItem[] = [
+    {
+      id: 'ai-ignite',
+      badge: 'School AI Camp • Milestone',
+      status: 'Conducted Initiative',
+      title: 'AI IGNITE: Empowering Young Minds at Lajnathul Muhammadiya HSS',
+      date: '5th October 2026',
+      location: 'Lajnathul Muhammadiya HSS, Alappuzha',
+      images: [
+        {
+          src: '/images/ai-ignite.jpg',
+          alt: 'AI Ignite Interactive Session at Lajnathul Muhammadiya HSS',
+          caption: 'Interactive student seminar & AI awareness camp at Lajnathul Muhammadiya HSS',
+          fit: 'cover',
+        },
+        {
+          src: '/images/ai-ignite-poster.jpg',
+          alt: 'AI Ignite Official Schedule & Program Poster',
+          caption: 'Official program schedule, dignitaries, and event inauguration poster',
+          fit: 'contain',
+        },
+      ],
+      certificateUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdv08ES6T-6CgOA9gZbgax3R6cvGbN7ZcF_mF1EnmfBD7phPA/viewform?usp=publish-editor',
+      summary: 'On October 5, 2026, Infocyle successfully hosted AI IGNITE, an exclusive 1.5-hour Artificial Intelligence Awareness Camp for high school students at Lajnathul Muhammadiya HSS. Driven by our core mission—Igniting Curiosity. Inspiring Tomorrow.—this interactive seminar was designed to demystify the rapidly evolving world of AI and technology.',
+      highlights: [
+        { label: 'Date & Time', value: 'Monday, 05 October 2026 • 10:30 AM (90 Mins)' },
+        { label: 'Venue', value: 'Lajnathul Muhammadiya HSS, Alappuzha' },
+        { label: 'Core Mission', value: 'Igniting Curiosity. Inspiring Tomorrow.' },
+        { label: 'Target Audience', value: 'High School Students (Future Tech Creators)' },
+      ],
+      details: [
+        'Over the course of 90 minutes, the Infocyle leadership team took students on an eye-opening journey to shift their mindset from being everyday tech consumers to becoming future tech creators.',
+        'The session featured live demonstrations of modern AI tools, engaging discussions on how AI is shaping real-world industries, and an introduction to the foundational logic that powers intelligent systems.',
+        'AI IGNITE served as a powerful launchpad, inspiring the next generation of innovators in Alappuzha to stop just using technology and start architecting tomorrow.',
+      ],
+    },
     {
       id: 'launch',
       badge: 'Official Launch • Milestone',
@@ -78,28 +115,6 @@ export default function EventsPage() {
         'Establishment of operational benchmarks for curriculum development, student mentoring, and enterprise systems deployment.',
       ],
     },
-    {
-      id: 'ai-ignite',
-      badge: 'School AI Camp • Milestone',
-      status: 'Conducted Initiative',
-      title: 'AI IGNITE: Empowering Young Minds at Lajnathul Muhammadiya HSS',
-      date: 'December 26, 2025',
-      location: 'Lajnathul Muhammadiya HSS, Alappuzha',
-      image: '/images/ai-ignite.jpg',
-      certificateUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSdv08ES6T-6CgOA9gZbgax3R6cvGbN7ZcF_mF1EnmfBD7phPA/viewform?usp=publish-editor',
-      summary: 'On December 26, 2025, Infocyle successfully hosted AI IGNITE, an exclusive 1.5-hour Artificial Intelligence Awareness Camp for high school students at Lajnathul Muhammadiya HSS. Driven by our core mission—Igniting Curiosity. Inspiring Tomorrow.—this interactive seminar was designed to demystify the rapidly evolving world of AI and technology.',
-      highlights: [
-        { label: 'Date & Time', value: 'Monday, December 26, 2025 • 10:30 AM (90 Mins)' },
-        { label: 'Venue', value: 'Lajnathul Muhammadiya HSS, Alappuzha' },
-        { label: 'Core Mission', value: 'Igniting Curiosity. Inspiring Tomorrow.' },
-        { label: 'Target Audience', value: 'High School Students (Future Tech Creators)' },
-      ],
-      details: [
-        'Over the course of 90 minutes, the Infocyle leadership team took students on an eye-opening journey to shift their mindset from being everyday tech consumers to becoming future tech creators.',
-        'The session featured live demonstrations of modern AI tools, engaging discussions on how AI is shaping real-world industries, and an introduction to the foundational logic that powers intelligent systems.',
-        'AI IGNITE served as a powerful launchpad, inspiring the next generation of innovators in Alappuzha to stop just using technology and start architecting tomorrow.',
-      ],
-    },
   ];
 
   return (
@@ -116,20 +131,20 @@ export default function EventsPage() {
 
       {/* Navigation Bar */}
       <nav className="fixed w-full z-50 bg-[#f8f7f4] border-b-2 border-[#070d18] shadow-[0px_4px_0px_0px_#070d18]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24">
-            <Link href="/" className="flex items-center space-x-3 group relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20 sm:h-24">
+            <Link href="/" className="flex items-center space-x-2 sm:space-x-3 shrink-0 group relative z-10">
               <img 
                 src="/logo.png" 
                 width={64} 
                 height={64} 
                 alt="Infocyle Logo"
-                className="h-12 md:h-14 w-auto object-contain border-2 border-[#070d18] bg-white p-1 shadow-[3px_3px_0px_0px_#070d18] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_0px_#070d18] transition-all"
+                className="h-10 sm:h-12 md:h-14 w-auto object-contain border-2 border-[#070d18] bg-white p-1 shadow-[2px_2px_0px_0px_#070d18] sm:shadow-[3px_3px_0px_0px_#070d18] group-hover:translate-x-0.5 group-hover:translate-y-0.5 group-hover:shadow-[1px_1px_0px_0px_#070d18] transition-all"
               />
-              <span className="text-[#070d18] text-2xl font-poppins tracking-tight mt-1">infocyle</span>
+              <span className="text-[#070d18] text-lg sm:text-2xl font-poppins tracking-tight mt-0.5 sm:mt-1">infocyle</span>
             </Link>
 
-            <div className="flex items-center space-x-3 sm:space-x-5">
+            <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
               <Link 
                 href="/#portfolio" 
                 className="hidden md:inline-flex items-center border-2 border-[#070d18] bg-white text-[#070d18] hover:bg-[#00f0ff] px-3.5 py-2 font-bold text-xs sm:text-sm uppercase tracking-wider shadow-[3px_3px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
@@ -138,15 +153,16 @@ export default function EventsPage() {
               </Link>
               <Link 
                 href="/#events" 
-                className="inline-flex items-center gap-2 border-2 border-[#070d18] bg-white text-[#070d18] hover:bg-[#070d18] hover:text-white px-3.5 sm:px-4 py-2 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[3px_3px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                className="inline-flex items-center gap-1.5 sm:gap-2 border-2 border-[#070d18] bg-white text-[#070d18] hover:bg-[#070d18] hover:text-white px-2.5 sm:px-4 py-1.5 sm:py-2 font-black text-[11px] sm:text-sm uppercase tracking-wider shadow-[2px_2px_0px_0px_#070d18] sm:shadow-[3px_3px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#070d18] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all whitespace-nowrap"
               >
-                <ArrowLeft className="w-4 h-4" /> <span className="hidden sm:inline">Back to</span> Overview
+                <ArrowLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" /> <span className="hidden sm:inline">Back to </span>Overview
               </Link>
               <Link 
                 href="/#contact" 
-                className="inline-flex items-center gap-2 bg-[#00f0ff] text-[#070d18] border-2 border-[#070d18] px-3.5 sm:px-5 py-2 font-black text-xs sm:text-sm uppercase tracking-wider shadow-[3px_3px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[5px_5px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all"
+                className="inline-flex items-center gap-1.5 sm:gap-2 bg-[#00f0ff] text-[#070d18] border-2 border-[#070d18] px-2.5 sm:px-5 py-1.5 sm:py-2 font-black text-[11px] sm:text-sm uppercase tracking-wider shadow-[2px_2px_0px_0px_#070d18] sm:shadow-[3px_3px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[4px_4px_0px_0px_#070d18] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all whitespace-nowrap"
               >
-                Partner With Us
+                <span className="sm:hidden">Partner</span>
+                <span className="hidden sm:inline">Partner With Us</span>
               </Link>
             </div>
           </div>
@@ -154,7 +170,7 @@ export default function EventsPage() {
       </nav>
 
       {/* Header Banner */}
-      <header className="relative pt-36 pb-16 sm:pt-44 sm:pb-20 border-b-2 border-[#070d18] bg-[#f0efe9]">
+      <header className="relative pt-32 pb-16 sm:pt-44 sm:pb-20 border-b-2 border-[#070d18] bg-[#f0efe9]">
         <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
           <div className="inline-block bg-[#00f0ff] text-[#070d18] border-2 border-[#070d18] px-4 py-1.5 font-mono text-xs font-black uppercase tracking-widest mb-6 shadow-[3px_3px_0px_0px_#070d18]">
             [ OFFICIAL ARCHIVES & CONVENTIONS ]
@@ -201,14 +217,10 @@ export default function EventsPage() {
               
               {/* Left Column: Visual or Feature Container */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                {evt.image ? (
-                  <div className="border-2 border-[#070d18] bg-black shadow-[4px_4px_0px_0px_#070d18] overflow-hidden group">
-                    <img 
-                      src={evt.image} 
-                      alt={evt.title}
-                      className="w-full h-64 sm:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
+                {evt.images && evt.images.length > 0 ? (
+                  <EventPhotoSwitcher photos={evt.images} />
+                ) : evt.image ? (
+                  <EventPhotoSwitcher photos={[{ src: evt.image, alt: evt.title }]} />
                 ) : (
                   <div className="border-2 border-[#070d18] bg-[#00f0ff]/10 p-8 shadow-[4px_4px_0px_0px_#070d18] flex flex-col items-center justify-center min-h-[260px] text-center">
                     <div className="w-16 h-16 bg-[#00f0ff] border-2 border-[#070d18] flex items-center justify-center mb-4 shadow-[3px_3px_0px_0px_#070d18]">

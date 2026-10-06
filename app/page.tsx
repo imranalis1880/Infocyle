@@ -23,13 +23,11 @@ export default function InfocyleLandingPage() {
     {
       src: '/images/infocyle-logo-launch.jpg',
       alt: 'Infocyle Logo Launch Ceremony',
-      badge: 'Unveiling Ceremony',
       caption: 'Ceremonial unveiling with Chief Guest Shri. Manoj Moothedan (Hon\'ble MLA) and Chairman Haji KM Pareeeth',
     },
     {
       src: '/images/infocyle-launch.jpg',
       alt: 'Infocyle Founding Leadership Conclave',
-      badge: 'Executive Conclave',
       caption: 'Founding leadership team: Imran Ali S (CEO), Sreerag PP (CTO), and Farhan A (COO)',
     },
   ];
@@ -343,13 +341,8 @@ export default function InfocyleLandingPage() {
                   ))}
 
                   {/* Corner Milestone Tag */}
-                  <div className="absolute top-0 right-0 z-20 bg-[#00f0ff] text-[#070d18] border-b-2 border-l-2 border-[#070d18] text-[11px] font-mono font-black px-3.5 py-1 uppercase tracking-wider">
+                  <div className="absolute top-0 right-0 z-20 bg-[#00f0ff] text-[#070d18] border-b-2 border-l-2 border-[#070d18] text-[10px] sm:text-[11px] font-mono font-black px-3 sm:px-3.5 py-1 uppercase tracking-wider">
                     [ MILESTONE 01 ]
-                  </div>
-
-                  {/* Active Badge */}
-                  <div className="absolute top-3 left-3 z-20 bg-[#070d18] text-[#00f0ff] border border-[#070d18] text-[11px] font-mono font-bold px-2.5 py-1 uppercase tracking-wider">
-                    {logoLaunchPhotos[eventPhotoIndex].badge}
                   </div>
 
                   {/* Bottom Caption Overlay */}
@@ -395,7 +388,7 @@ export default function InfocyleLandingPage() {
               </div>
 
               {/* Event Content & Highlights Column (6 cols) */}
-              <div className="lg:col-span-6 flex flex-col justify-between">
+              <div className="lg:col-span-6 flex flex-col justify-center">
                 <div>
                   <div className="flex flex-wrap items-center gap-2 mb-3">
                     <span className="bg-[#f0efe9] text-[#070d18] border border-[#070d18] text-[11px] font-mono font-bold px-2.5 py-0.5">
@@ -426,24 +419,9 @@ export default function InfocyleLandingPage() {
                     </p>
                   </div>
 
-                  <p className="text-xs sm:text-sm text-[#475569] font-medium leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-[#475569] font-medium leading-relaxed">
                     A ceremonial milestone formalizing our multi-division portfolio structure encompassing Vectra Labs and next-generation systems architecture, attended by educators and community leaders.
                   </p>
-                </div>
-
-                <div className="pt-6 border-t-2 border-[#070d18] flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <Link 
-                    href="/events#launch" 
-                    className="inline-flex items-center justify-center gap-2.5 w-full sm:w-auto bg-[#070d18] text-white hover:bg-[#00f0ff] hover:text-[#070d18] border-2 border-[#070d18] font-black py-3.5 px-6 shadow-[4px_4px_0px_0px_#070d18] hover:-translate-y-0.5 hover:shadow-[6px_6px_0px_0px_#070d18] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all text-xs font-mono uppercase tracking-wider"
-                  >
-                    View Full Event Dossier <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link 
-                    href="/events" 
-                    className="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase tracking-wider text-[#070d18] hover:text-[#00f0ff] transition-colors"
-                  >
-                    Explore All Archives →
-                  </Link>
                 </div>
               </div>
 
