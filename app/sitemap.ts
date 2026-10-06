@@ -6,14 +6,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: baseUrl,
-      lastModified: new Date('2026-10-05T00:00:00.000Z'),
-      changeFrequency: 'monthly',
+      lastModified: new Date('2026-10-06T00:00:00.000Z'),
+      changeFrequency: 'weekly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/events`,
-      lastModified: new Date('2026-10-05T00:00:00.000Z'),
-      changeFrequency: 'monthly',
+      lastModified: new Date('2026-10-06T00:00:00.000Z'),
+      changeFrequency: 'weekly',
       priority: 0.9,
     },
     {

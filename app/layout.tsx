@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   creator: "Infocyle Technologies",
   publisher: "Infocyle Technologies",
   alternates: {
-    canonical: "/",
+    canonical: "https://infocyle.com",
   },
   openGraph: {
     title: "Infocyle | Technology Holding Company",
